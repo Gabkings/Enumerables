@@ -103,5 +103,21 @@ module Enumerable
         result
     end
 
+    def my_map(my_proc = nil)
+        new_array = []
+        my_each do |x|
+          if my_proc.nil? && block_given?
+            new_array.push(yield(x))
+          elsif my_proc.nil? && !block_given?
+            return enum_for
+          else
+            new_array.push(my_proc.call(x))
+          end
+        end
+        new_array
+    end
+
+    
+
 end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
