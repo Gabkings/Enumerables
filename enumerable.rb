@@ -133,3 +133,7 @@ module Enumerable
     end
 end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
+
+def multiply_els(args)
+    puts args.my_inject(:*)
+end
