@@ -85,6 +85,4 @@ describe Enumerable do
       expect([].my_none? ).to eql(true)
     end
   end
-  
-
 end
