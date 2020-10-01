@@ -1,3 +1,6 @@
+# rubocop: disable Metrics/BlockLength
+# frozen_string_literal: true
+
 require './enumerable.rb'
 describe Enumerable do
   describe '#my_all?' do
@@ -137,3 +140,5 @@ describe Enumerable do
     end
   end
 end
+
+# rubocop: enable Metrics/BlockLength

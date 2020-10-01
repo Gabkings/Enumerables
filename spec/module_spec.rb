@@ -1,3 +1,6 @@
+# rubocop: disable Metrics/BlockLength
+# frozen_string_literal: true
+
 require './enumerable.rb'
 describe Enumerable do
   describe '#my_all?' do
@@ -17,32 +20,33 @@ describe Enumerable do
       expect([nil, true, 99].my_all?).to eql(false)
     end
     it 'return false' do
-      expect([].my_all? ).to eql(true)
+      expect([].my_all?).to eql(true)
     end
   end
   describe '#my_each' do
     it 'Return the elements 1 2 3 4' do
-    expect([1, 2, 3, 4].my_each{|x| x}).to eql ([1, 2, 3, 4])
+      expect([1, 2, 3, 4].my_each { |x| x }).to eql([1, 2, 3, 4])
     end
 
     it 'Return the keys and values of hashes ' do
-      expect({name: 'Muhammed', language: 'ruby'}.my_each{|x,y| "key is #{x}, value is #{y}"}).to eql ({:name=>"Muhammed", :language=>"ruby"})
+      expect({ name: 'Gab', language: 'ruby' }
+        .my_each { |x, y| "key is #{x}, value is #{y}" }).to eql({ name: 'Gab', language: 'ruby' })
     end
   end
   describe '#my_each_with_index' do
     it 'Return the value and index of array' do
-      expect(%w[hello world].my_each_with_index{|x, y| x}).to eql(['hello', 'world']) 
+      expect(%w[hello world].my_each_with_index { |x, _y| x }).to eql(%w[hello world])
     end
   end
   describe '#my_select' do
     it 'Return a new array of only even numbers' do
-      expect([1, 2, 3, 4, 5, 6].my_select { |n| n.even? }).to eql([2, 4, 6]) 
+      expect([1, 2, 3, 4, 5, 6].my_select(&:even?)).to eql([2, 4, 6])
     end
     it 'Return a new array containing elements starting with "a"' do
-      expect(['apple', 'orange', 'banana'].my_select { |fruit| fruit.start_with? "a" }).to eql(['apple']) 
+      expect(%w[apple orange banana].my_select { |fruit| fruit.start_with? 'a' }).to eql(['apple'])
     end
     it 'Return a new array containing elements starting with "a"' do
-      expect({apples: 10, oranges: 5, bananas: 1}.my_select { |k, v| v > 1 }).to eql({:apples=>10, :oranges=>5}) 
+      expect({ apples: 10, oranges: 5, bananas: 1 }.my_select { |_k, v| v > 1 }).to eql({ apples: 10, oranges: 5 })
     end
   end
   describe '#my_any?' do
@@ -62,7 +66,7 @@ describe Enumerable do
       expect([nil, true, 99].my_any?).to eql(true)
     end
     it 'return false' do
-      expect([].my_any? ).to eql(false)
+      expect([].my_any?).to eql(false)
     end
   end
   describe '#my_none?' do
@@ -82,7 +86,9 @@ describe Enumerable do
       expect([nil, true, 99].my_none?).to eql(false)
     end
     it 'return true' do
-      expect([].my_none? ).to eql(true)
+      expect([].my_none?).to eql(true)
     end
   end
 end
+
+# rubocop: enable Metrics/BlockLength
