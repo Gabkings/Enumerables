@@ -20,7 +20,17 @@ module Enumerable
           x += 1
         end
         self
-      end    
-      
+    end    
+
+    def my_select
+        return enum_for unless block_given?
+    
+        new_array = []
+        my_each do |x|
+          new_array.push(x) if yield(x)
+        end
+        new_array
+    end
+
 end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
