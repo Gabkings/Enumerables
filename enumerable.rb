@@ -66,7 +66,21 @@ module Enumerable
           end
         end
         result
-      end
+    end
+
+    def my_count(number = nil)
+        count = 0
+        my_each do |x|
+          if block_given? && number.nil?
+            count += 1 if yield(x) == true
+          elsif !number.nil?
+            count += 1 if x == number
+          else
+            count += 1
+          end
+        end
+        count
+    end    
 
 end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
