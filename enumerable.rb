@@ -80,7 +80,28 @@ module Enumerable
           end
         end
         count
-    end    
+    end
+    
+    def my_none?(*args)
+        result = true
+        my_each do |x|
+          if block_given?
+            result = false if yield(x) == true
+          elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
+            my_each { |y| result = false if args[0] === y }
+          elsif args[0].is_a?(Regexp)
+            my_each { |y| result = false if y.match(args[0]) }
+          elsif !block_given? && args.empty?
+            result =
+              if x.nil? || x == false
+                true
+              else
+                false
+              end
+          end
+        end
+        result
+    end
 
 end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
