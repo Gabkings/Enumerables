@@ -51,7 +51,8 @@ describe Enumerable do
         .my_select(&:even?)).to eql([2, 4, 6])
     end
     it "Return a new array containing elements starting with 'a'" do
-      expect(%w[apple orange banana].my_select { |fruit| fruit.start_with? 'a' }).to eql(['apple'])
+      expect(%w[apple orange banana]
+        .my_select { |fruit| fruit.start_with? 'a' }).to eql(['apple'])
     end
     it 'Return Enumerator' do
       expect([1, 2, 3, 4, 5]
