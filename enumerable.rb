@@ -34,7 +34,7 @@ module Enumerable
 
     def my_all?(*args)
         result = true
-        
+
         my_each do |x|
           if block_given?
             result = false if yield(x) == false
@@ -48,6 +48,25 @@ module Enumerable
         end
         result
     end
+
+    def my_any?(*args)
+        result = false
+        my_each do |x|
+          if block_given?
+            result = true if yield(x) == true
+          elsif !block_given? && !args.empty? && !args[0].is_a?(Regexp)
+            my_each { |y| result = true if args[0] === y }
+          elsif args[0].is_a?(Regexp)
+            my_each { |y| result = true if y.match(args[0]) }
+          elsif !block_given? && args.empty?
+            if x.nil? || x == false
+            else
+              result = true
+            end
+          end
+        end
+        result
+      end
 
 end
 # rubocop:enable Metrics/ModuleLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
