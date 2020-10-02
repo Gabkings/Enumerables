@@ -140,3 +140,5 @@ end
 def multiply_els(args)
   puts args.my_inject(:*)
 end
+
+print [1, 2, 3].my_each(&proc{|x| x>2})
