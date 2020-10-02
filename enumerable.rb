@@ -25,7 +25,6 @@ module Enumerable
       yield(a[x], x)
       x += 1
     end
-    self
   end
 
   def my_select
@@ -140,5 +139,5 @@ end
 # rubocop:enable Metrics/ModuleLength, Metrics/MethodLength,Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Style/CaseEquality
 
 def multiply_els(args)
-  puts args.my_inject(:*)
+  args.my_inject(:*)
 end
