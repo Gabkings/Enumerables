@@ -6,7 +6,8 @@ module Enumerable
   # Description/Explanation of Person class
   def my_each
     return enum_for unless block_given?
-    a = self.to_a
+
+    a = to_a
     y = 0
     while y < a.length
       yield(a[y])
@@ -16,7 +17,7 @@ module Enumerable
   end
 
   def my_each_with_index
-    a = self.to_a
+    a = to_a
     return enum_for unless block_given?
 
     x = 0
@@ -141,4 +142,3 @@ end
 def multiply_els(args)
   puts args.my_inject(:*)
 end
-
